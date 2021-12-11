@@ -37,12 +37,12 @@ func Connect() *mongo.Client {
 }
 
 /*CheckConn checks the connection to the MongoDB server*/
-func CheckConn() int {
+func CheckConn() bool {
 	err := MongoConn.Ping(context.TODO(), nil)
 
 	if err != nil {
-		return 1
+		return false
 	}
 
-	return 0
+	return true
 }
