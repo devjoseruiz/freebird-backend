@@ -18,6 +18,9 @@ func Handlers() {
 	router.HandleFunc("/register",
 		middlewares.CheckDB(routers.Register)).Methods("POST")
 
+	router.HandleFunc("/login",
+		middlewares.CheckDB(routers.Login)).Methods("POST")
+
 	PORT := helpers.GetConfVar("HOST_PORT")
 
 	if PORT == "" {
