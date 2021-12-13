@@ -33,6 +33,9 @@ func Handlers() {
 	router.HandleFunc("/pick",
 		middlewares.CheckDB(middlewares.ValidateJWT(routers.ReturnPicks))).Methods("GET")
 
+	router.HandleFunc("/pick",
+		middlewares.CheckDB(middlewares.ValidateJWT(routers.RemovePick))).Methods("DELETE")
+
 	PORT := helpers.GetConfVar("HOST_PORT")
 
 	if PORT == "" {
