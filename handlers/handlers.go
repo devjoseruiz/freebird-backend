@@ -27,6 +27,9 @@ func Handlers() {
 	router.HandleFunc("/profile/edit",
 		middlewares.CheckDB(middlewares.ValidateJWT(routers.EditProfile))).Methods("PUT")
 
+	router.HandleFunc("/pick",
+		middlewares.CheckDB(middlewares.ValidateJWT(routers.SavePick))).Methods("POST")
+
 	PORT := helpers.GetConfVar("HOST_PORT")
 
 	if PORT == "" {
