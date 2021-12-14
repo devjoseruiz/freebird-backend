@@ -48,6 +48,18 @@ func Handlers() {
 	router.HandleFunc("/profile/banner",
 		middlewares.CheckDB(middlewares.ValidateJWT(routers.UploadBanner))).Methods("GET")
 
+	router.HandleFunc("/follow",
+		middlewares.CheckDB(middlewares.ValidateJWT(routers.SetRelationship))).Methods("POST")
+
+	router.HandleFunc("/follow",
+		middlewares.CheckDB(middlewares.ValidateJWT(routers.UnsetRelationship))).Methods("DELETE")
+
+	router.HandleFunc("/follow",
+		middlewares.CheckDB(middlewares.ValidateJWT(routers.CheckRelationship))).Methods("GET")
+
+	router.HandleFunc("/users",
+		middlewares.CheckDB(middlewares.ValidateJWT(routers.ListUsers))).Methods("GET")
+
 	PORT := helpers.GetConfVar("HOST_PORT")
 
 	if PORT == "" {
