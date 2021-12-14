@@ -57,6 +57,9 @@ func Handlers() {
 	router.HandleFunc("/follow",
 		middlewares.CheckDB(middlewares.ValidateJWT(routers.CheckRelationship))).Methods("GET")
 
+	router.HandleFunc("/users",
+		middlewares.CheckDB(middlewares.ValidateJWT(routers.ListUsers))).Methods("GET")
+
 	PORT := helpers.GetConfVar("HOST_PORT")
 
 	if PORT == "" {
