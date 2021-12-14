@@ -60,6 +60,9 @@ func Handlers() {
 	router.HandleFunc("/users",
 		middlewares.CheckDB(middlewares.ValidateJWT(routers.ListUsers))).Methods("GET")
 
+	router.HandleFunc("/timeline",
+		middlewares.CheckDB(middlewares.ValidateJWT(routers.ShowFollowingPicks))).Methods("GET")
+
 	PORT := helpers.GetConfVar("HOST_PORT")
 
 	if PORT == "" {
