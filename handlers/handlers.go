@@ -36,6 +36,18 @@ func Handlers() {
 	router.HandleFunc("/pick",
 		middlewares.CheckDB(middlewares.ValidateJWT(routers.RemovePick))).Methods("DELETE")
 
+	router.HandleFunc("/profile/avatar",
+		middlewares.CheckDB(middlewares.ValidateJWT(routers.UploadAvatar))).Methods("POST")
+
+	router.HandleFunc("/profile/banner",
+		middlewares.CheckDB(middlewares.ValidateJWT(routers.UploadBanner))).Methods("POST")
+
+	router.HandleFunc("/profile/avatar",
+		middlewares.CheckDB(middlewares.ValidateJWT(routers.UploadAvatar))).Methods("GET")
+
+	router.HandleFunc("/profile/banner",
+		middlewares.CheckDB(middlewares.ValidateJWT(routers.UploadBanner))).Methods("GET")
+
 	PORT := helpers.GetConfVar("HOST_PORT")
 
 	if PORT == "" {
